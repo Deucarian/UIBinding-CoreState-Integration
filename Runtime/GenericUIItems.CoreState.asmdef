@@ -1,5 +1,5 @@
 {
-  "name": "GenericUIItems.CoreState",
+  "name": "GenericUIItems.CoreState.Bridge",
   "rootNamespace": "JorisHoef.GenericUIItems.CoreState",
   "references": [
     "GenericUIItems",

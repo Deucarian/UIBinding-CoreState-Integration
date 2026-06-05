@@ -1,8 +1,8 @@
 {
-  "name": "GenericUIItems.CoreState.Samples.BasicUsage",
+  "name": "GenericUIItems.CoreState.Bridge.Samples.BasicUsage",
   "rootNamespace": "JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage",
   "references": [
-    "GenericUIItems.CoreState",
+    "GenericUIItems.CoreState.Bridge",
     "GenericUIItems",
     "JorisHoef.Core.State",
     "Unity.ugui"

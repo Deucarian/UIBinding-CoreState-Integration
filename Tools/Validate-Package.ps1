@@ -50,7 +50,7 @@ foreach ($file in $requiredFiles) {
 }
 
 $package = Get-Content -LiteralPath (Join-Path $root "package.json") -Raw | ConvertFrom-Json
-if ($package.name -ne "com.jorishoef.generic-ui-items-core-state") {
+if ($package.name -ne "com.jorishoef.generic-ui-items.core-state-bridge") {
     throw "Unexpected package name: $($package.name)"
 }
 
@@ -67,7 +67,7 @@ if ($package.dependencies."com.jorishoef.core.state" -ne "1.0.0") {
 }
 
 $runtimeAsmdef = Get-Content -LiteralPath (Join-Path $root "Runtime/GenericUIItems.CoreState.asmdef") -Raw | ConvertFrom-Json
-if ($runtimeAsmdef.name -ne "GenericUIItems.CoreState") {
+if ($runtimeAsmdef.name -ne "GenericUIItems.CoreState.Bridge") {
     throw "Unexpected runtime asmdef name: $($runtimeAsmdef.name)"
 }
 
@@ -84,14 +84,14 @@ if ($runtimeAsmdef.references -contains "UnityEditor") {
 }
 
 $testAsmdef = Get-Content -LiteralPath (Join-Path $root "Tests/Editor/GenericUIItems.CoreState.Tests.asmdef") -Raw | ConvertFrom-Json
-foreach ($reference in @("GenericUIItems.CoreState", "GenericUIItems", "JorisHoef.Core.State")) {
+foreach ($reference in @("GenericUIItems.CoreState.Bridge", "GenericUIItems", "JorisHoef.Core.State")) {
     if ($testAsmdef.references -notcontains $reference) {
         throw "Tests asmdef must reference $reference"
     }
 }
 
 $sampleAsmdef = Get-Content -LiteralPath (Join-Path $root "Samples~/BasicUsage/GenericUIItems.CoreState.Samples.BasicUsage.asmdef") -Raw | ConvertFrom-Json
-foreach ($reference in @("GenericUIItems.CoreState", "GenericUIItems", "JorisHoef.Core.State", "Unity.ugui")) {
+foreach ($reference in @("GenericUIItems.CoreState.Bridge", "GenericUIItems", "JorisHoef.Core.State", "Unity.ugui")) {
     if ($sampleAsmdef.references -notcontains $reference) {
         throw "Sample asmdef must reference $reference"
     }
@@ -109,7 +109,7 @@ $runtimeFiles = Get-ChildItem -LiteralPath (Join-Path $root "Runtime") -Recurse 
 foreach ($file in $runtimeFiles) {
     $content = Get-Content -LiteralPath $file.FullName -Raw
     if ($content -match "APIHelper|ServiceLocator|static\s+readonly\s+Dictionary|static\s+Dictionary") {
-        throw "Runtime contains forbidden integration scope or static cache pattern in $($file.Name)"
+        throw "Runtime contains forbidden bridge scope or static cache pattern in $($file.Name)"
     }
 }
 
@@ -117,15 +117,15 @@ $genericUIItemsRoot = "C:/Repositories/GenericUIItems"
 $coreStateRoot = "C:/Repositories/Core-State"
 if (Test-Path -LiteralPath $genericUIItemsRoot) {
     $genericPackage = Get-Content -LiteralPath (Join-Path $genericUIItemsRoot "package.json") -Raw
-    if ($genericPackage -match "core.state|generic-ui-items-core-state") {
-        throw "GenericUIItems package must not depend on Core State or this integration package."
+    if ($genericPackage -match "core.state|generic-ui-items\.core-state-bridge") {
+        throw "GenericUIItems package must not depend on Core State or this bridge package."
     }
 }
 
 if (Test-Path -LiteralPath $coreStateRoot) {
     $corePackage = Get-Content -LiteralPath (Join-Path $coreStateRoot "package.json") -Raw
-    if ($corePackage -match "generic-ui-items|generic-ui-items-core-state") {
-        throw "Core State package must not depend on Generic UI Items or this integration package."
+    if ($corePackage -match "generic-ui-items|generic-ui-items\.core-state-bridge") {
+        throw "Core State package must not depend on Generic UI Items or this bridge package."
     }
 }
 
@@ -135,4 +135,4 @@ if ($generatedArtifacts.Count -gt 0) {
     throw "Generated artifacts are present in the package repository."
 }
 
-Write-Host "GenericUIItems.CoreState package validation passed."
+Write-Host "GenericUIItems.CoreState.Bridge package validation passed."

@@ -2,7 +2,7 @@
 
 ## 1.0.0
 
-- Initial integration package.
+- Initial bridge package.
 - Added repository-to-container binding.
 - Added optional selection-to-UI binding.
 - Added basic usage sample scripts.

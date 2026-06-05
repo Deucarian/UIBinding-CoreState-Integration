@@ -1,8 +1,8 @@
 {
-  "name": "GenericUIItems.CoreState.Tests",
+  "name": "GenericUIItems.CoreState.Bridge.Tests",
   "rootNamespace": "JorisHoef.GenericUIItems.CoreState.Tests",
   "references": [
-    "GenericUIItems.CoreState",
+    "GenericUIItems.CoreState.Bridge",
     "GenericUIItems",
     "JorisHoef.Core.State"
   ],

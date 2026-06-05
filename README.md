@@ -1,15 +1,15 @@
-# Generic UI Items - Core State Integration
+# JorisHoef Generic UI Items Core State Bridge
 
 ## Overview
 
-Generic UI Items - Core State Integration is a small Unity UPM package that connects two standalone packages:
+JorisHoef Generic UI Items Core State Bridge is a small Unity UPM package that connects two standalone packages:
 
 - `com.jorishoef.generic-ui-items`
 - `com.jorishoef.core.state`
 
-The package exists so Generic UI Items can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this integration package or each other.
+The package exists so Generic UI Items can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this bridge package or each other.
 
-Package ID: `com.jorishoef.generic-ui-items-core-state`
+Package ID: `com.jorishoef.generic-ui-items.core-state-bridge`
 
 ## Installation
 
@@ -22,7 +22,7 @@ For local development, reference all three packages by file path from a separate
   "dependencies": {
     "com.jorishoef.generic-ui-items": "file:C:/Repositories/GenericUIItems",
     "com.jorishoef.core.state": "file:C:/Repositories/Core-State",
-    "com.jorishoef.generic-ui-items-core-state": "file:C:/Repositories/GenericUIItems-CoreState"
+    "com.jorishoef.generic-ui-items.core-state-bridge": "https://github.com/JorisHoef/GenericUIItems-CoreState-Bridge.git#main"
   }
 }
 ```
@@ -115,20 +115,20 @@ Run structural validation from the package root:
 pwsh ./Tools/Validate-Package.ps1
 ```
 
-For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `GenericUIItems.CoreState.Tests`.
+For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `GenericUIItems.CoreState.Bridge.Tests`.
 
 Package tests are compiled only when the project manifest marks this package as testable:
 
 ```json
 "testables": [
-  "com.jorishoef.generic-ui-items-core-state"
+  "com.jorishoef.generic-ui-items.core-state-bridge"
 ]
 ```
 
 Recommended playground path:
 
 ```text
-C:/Repositories/GenericUIItems-CoreState-TestProject
+C:/Repositories/GenericUIItems-CoreState-Bridge-TestProject
 ```
 
 Do not copy source code between repositories. Consume the packages through Unity Package Manager file references.

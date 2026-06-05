@@ -1,8 +1,8 @@
 {
-  "name": "com.jorishoef.generic-ui-items-core-state",
+  "name": "com.jorishoef.generic-ui-items.core-state-bridge",
   "version": "1.0.0",
-  "displayName": "Generic UI Items - Core State Integration",
-  "description": "Integration package that binds Core State repositories and selection services to Generic UI Items containers.",
+  "displayName": "JorisHoef Generic UI Items Core State Bridge",
+  "description": "Bridge package that binds Core State repositories and selection services to Generic UI Items containers.",
   "unity": "2021.3",
   "author": {
     "name": "JorisHoef"
@@ -12,7 +12,7 @@
     "state",
     "repository",
     "selection",
-    "integration"
+    "bridge"
   ],
   "dependencies": {
     "com.jorishoef.generic-ui-items": "1.0.0",
