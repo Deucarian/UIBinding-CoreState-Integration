@@ -1,0 +1,23 @@
+{
+  "name": "GenericUIItems.CoreState.Tests",
+  "rootNamespace": "JorisHoef.GenericUIItems.CoreState.Tests",
+  "references": [
+    "GenericUIItems.CoreState",
+    "GenericUIItems",
+    "JorisHoef.Core.State"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "noEngineReferences": false
+}

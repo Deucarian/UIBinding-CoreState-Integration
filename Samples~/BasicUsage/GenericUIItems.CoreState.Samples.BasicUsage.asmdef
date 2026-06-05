@@ -1,0 +1,19 @@
+{
+  "name": "GenericUIItems.CoreState.Samples.BasicUsage",
+  "rootNamespace": "JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage",
+  "references": [
+    "GenericUIItems.CoreState",
+    "GenericUIItems",
+    "JorisHoef.Core.State",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

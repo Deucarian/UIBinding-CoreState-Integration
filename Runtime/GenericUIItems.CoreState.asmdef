@@ -1,0 +1,17 @@
+{
+  "name": "GenericUIItems.CoreState",
+  "rootNamespace": "JorisHoef.GenericUIItems.CoreState",
+  "references": [
+    "GenericUIItems",
+    "JorisHoef.Core.State"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
