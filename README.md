@@ -64,7 +64,7 @@ The caller owns binding lifetime. There are no static caches, global discovery h
 
 ## Selection Binding
 
-`SelectionUIBinding<TKey, T>` reflects `ISelectionService<TKey, T>` state into UI item components that implement `ISelectableUIItem`.
+`SelectionUIBinding<TKey, T>` reflects `ISelectionService<TKey, T>` state into Generic UI Items selection visuals when the container has an `IGenericUIItemVisual<TKey, T>` configured. If no visual strategy is configured, it falls back to UI item components that implement `ISelectableUIItem`.
 
 ```csharp
 using JorisHoef.GenericUIItems.CoreState;
@@ -84,6 +84,17 @@ var selectionBinding = new SelectionUIBinding<string, ProjectData>(
 selectionBinding.Bind();
 ```
 
+With the visual strategy API, item components no longer need to own selection visuals:
+
+```csharp
+container.SetItemVisual(new GraphicTintGenericUIItemVisual<string, ProjectData>(
+    normalColor,
+    selectedColor,
+    hoveredColor));
+
+selectionBinding.Bind();
+```
+
 Bind repository UI before selection UI when both are used:
 
 ```csharp
@@ -96,7 +107,7 @@ Click-to-select behavior belongs in the item or view code that owns the concrete
 ## Public API
 
 - `RepositoryUIBinding<TKey, T>`: binds Core State repository changes to a Generic UI Items container.
-- `SelectionUIBinding<TKey, T>`: applies Core State selection changes to selectable UI items.
+- `SelectionUIBinding<TKey, T>`: applies Core State selection changes to Generic UI Items visual containers or selectable UI items.
 - `ISelectableUIItem`: optional UI item contract for selected visual state.
 
 ## Samples
@@ -141,4 +152,4 @@ Public API changes require README updates, changelog entries, and focused EditMo
 
 - This package is bridge code only.
 - It does not provide networking, persistence, MVVM, reactive frameworks, service location, pooling, virtualization, or app-specific UI architecture.
-- Selection visuals require item components to implement `ISelectableUIItem`.
+- Selection visuals can be handled by a Generic UI Items visual strategy or, for older item prefabs, by item components that implement `ISelectableUIItem`.

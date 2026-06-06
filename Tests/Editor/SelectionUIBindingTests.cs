@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using JorisHoef.Core.State;
 using JorisHoef.GenericUIItems;
 using NUnit.Framework;
@@ -39,6 +40,21 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             context.Selection.Select("one");
 
             Assert.That(GetItem(context.Container, "one").IsSelected, Is.True);
+            Assert.That(GetItem(context.Container, "two").IsSelected, Is.False);
+        }
+
+        [Test]
+        public void SelectionChange_UpdatesContainerVisualSelectionWhenVisualIsConfigured()
+        {
+            RecordingVisual visual = new RecordingVisual();
+            BindingContext context = CreateBoundContext(visual);
+
+            visual.Clear();
+            context.Selection.Select("two");
+
+            Assert.That(context.Container.HasSelectedKey, Is.True);
+            Assert.That(context.Container.SelectedKey, Is.EqualTo("two"));
+            Assert.That(visual.Calls, Is.EqualTo(new[] { "selected:two" }));
             Assert.That(GetItem(context.Container, "two").IsSelected, Is.False);
         }
 
@@ -110,13 +126,13 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             Assert.That(context.SelectionBinding.IsBound, Is.False);
         }
 
-        private BindingContext CreateBoundContext()
+        private BindingContext CreateBoundContext(RecordingVisual visual = null)
         {
             Repository<string, TestData> repository = CreateRepository(
                 new TestData("one", "First"),
                 new TestData("two", "Second"));
             SelectionService<string, TestData> selection = new SelectionService<string, TestData>(repository);
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            GenericUIContainer<TestData, string> container = CreateContainer(visual);
             var repositoryBinding = new RepositoryUIBinding<string, TestData>(repository, container);
             var selectionBinding = new SelectionUIBinding<string, TestData>(selection, container);
 
@@ -126,9 +142,9 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             return new BindingContext(repository, selection, container, repositoryBinding, selectionBinding);
         }
 
-        private GenericUIContainer<TestData, string> CreateContainer()
+        private GenericUIContainer<TestData, string> CreateContainer(RecordingVisual visual = null)
         {
-            return new GenericUIContainer<TestData, string>(_parent, _prefab, data => data.Id);
+            return new GenericUIContainer<TestData, string>(_parent, _prefab, data => data.Id, visual);
         }
 
         private static Repository<string, TestData> CreateRepository(params TestData[] items)
@@ -192,6 +208,31 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             public void SetSelected(bool selected)
             {
                 IsSelected = selected;
+            }
+        }
+
+        private sealed class RecordingVisual : IGenericUIItemVisual<string, TestData>
+        {
+            public readonly List<string> Calls = new List<string>();
+
+            public void ApplyNormal(string key, TestData item, object view)
+            {
+                Calls.Add("normal:" + key);
+            }
+
+            public void ApplySelected(string key, TestData item, object view)
+            {
+                Calls.Add("selected:" + key);
+            }
+
+            public void ApplyHovered(string key, TestData item, object view)
+            {
+                Calls.Add("hovered:" + key);
+            }
+
+            public void Clear()
+            {
+                Calls.Clear();
             }
         }
     }

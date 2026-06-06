@@ -40,6 +40,11 @@ namespace JorisHoef.GenericUIItems.CoreState
 
         public void Refresh()
         {
+            if (ApplyContainerSelectionVisual())
+            {
+                return;
+            }
+
             ClearSelectableItems();
 
             if (_selectionService.HasSelection)
@@ -66,6 +71,11 @@ namespace JorisHoef.GenericUIItems.CoreState
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs<TKey, T> args)
         {
+            if (ApplyContainerSelectionVisual(args.HasSelection, args.SelectedKey))
+            {
+                return;
+            }
+
             if (args.HadPreviousSelection)
             {
                 SetItemSelected(args.PreviousKey, false);
@@ -75,6 +85,35 @@ namespace JorisHoef.GenericUIItems.CoreState
             {
                 SetItemSelected(args.SelectedKey, true);
             }
+        }
+
+        private bool ApplyContainerSelectionVisual()
+        {
+            return ApplyContainerSelectionVisual(
+                _selectionService.HasSelection,
+                _selectionService.HasSelection ? _selectionService.SelectedKey : default);
+        }
+
+        private bool ApplyContainerSelectionVisual(bool hasSelection, TKey selectedKey)
+        {
+            IGenericUISelectionVisuals<TKey, T> visualContainer =
+                _container as IGenericUISelectionVisuals<TKey, T>;
+
+            if (visualContainer == null || !visualContainer.HasItemVisual)
+            {
+                return false;
+            }
+
+            if (hasSelection)
+            {
+                visualContainer.SetSelectedKey(selectedKey);
+            }
+            else
+            {
+                visualContainer.ClearSelectedKey();
+            }
+
+            return true;
         }
 
         private void ClearSelectableItems()

@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Updated `SelectionUIBinding<TKey, T>` to drive Generic UI Items visual-aware containers when an item visual strategy is configured.
+- Kept the existing `ISelectableUIItem` fallback for item-prefab-owned selected visuals.
+- Added EditMode coverage for the visual-aware selection binding path.
+
 ## 1.0.0
 
 - Initial bridge package.
