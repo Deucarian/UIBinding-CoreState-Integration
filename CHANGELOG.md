@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Removed the hard compile-time dependency on the new Generic UI Items visual container interface so older cached GenericUIItems installs can still fall back to `ISelectableUIItem`.
 - Updated `SelectionUIBinding<TKey, T>` to drive Generic UI Items visual-aware containers when an item visual strategy is configured.
 - Kept the existing `ISelectableUIItem` fallback for item-prefab-owned selected visuals.
 - Added EditMode coverage for the visual-aware selection binding path.

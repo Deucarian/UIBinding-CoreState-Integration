@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using JorisHoef.Core.State;
 using JorisHoef.GenericUIItems;
 
@@ -96,21 +97,41 @@ namespace JorisHoef.GenericUIItems.CoreState
 
         private bool ApplyContainerSelectionVisual(bool hasSelection, TKey selectedKey)
         {
-            IGenericUISelectionVisuals<TKey, T> visualContainer =
-                _container as IGenericUISelectionVisuals<TKey, T>;
+            Type containerType = _container.GetType();
+            PropertyInfo hasItemVisualProperty = containerType.GetProperty("HasItemVisual");
 
-            if (visualContainer == null || !visualContainer.HasItemVisual)
+            if (hasItemVisualProperty == null ||
+                hasItemVisualProperty.PropertyType != typeof(bool) ||
+                !(bool)hasItemVisualProperty.GetValue(_container, null))
             {
                 return false;
             }
 
             if (hasSelection)
             {
-                visualContainer.SetSelectedKey(selectedKey);
+                MethodInfo setSelectedKey = containerType.GetMethod(
+                    "SetSelectedKey",
+                    new[] { typeof(TKey) });
+
+                if (setSelectedKey == null)
+                {
+                    return false;
+                }
+
+                setSelectedKey.Invoke(_container, new object[] { selectedKey });
             }
             else
             {
-                visualContainer.ClearSelectedKey();
+                MethodInfo clearSelectedKey = containerType.GetMethod(
+                    "ClearSelectedKey",
+                    Type.EmptyTypes);
+
+                if (clearSelectedKey == null)
+                {
+                    return false;
+                }
+
+                clearSelectedKey.Invoke(_container, null);
             }
 
             return true;
