@@ -1,21 +1,21 @@
 using System;
-using JorisHoef.Core.State;
-using JorisHoef.GenericUIItems;
+using Deucarian.CoreState;
+using Deucarian.UIBinding;
 
-namespace JorisHoef.GenericUIItems.CoreState
+namespace Deucarian.UIBinding.CoreStateBridge
 {
     /// <summary>
-    /// Synchronizes a Core State repository into a Generic UI Items container.
+    /// Synchronizes a Core State repository into a UI Binding container.
     /// </summary>
     public sealed class RepositoryUIBinding<TKey, T> : IDisposable
     {
         private readonly IReadOnlyRepository<TKey, T> _repository;
-        private readonly IGenericUIContainer<T, TKey> _container;
+        private readonly IUIBindingContainer<T, TKey> _container;
         private bool _isBound;
 
         public RepositoryUIBinding(
             IReadOnlyRepository<TKey, T> repository,
-            IGenericUIContainer<T, TKey> container)
+            IUIBindingContainer<T, TKey> container)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _container = container ?? throw new ArgumentNullException(nameof(container));

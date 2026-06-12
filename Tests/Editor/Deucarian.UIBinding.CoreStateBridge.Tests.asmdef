@@ -1,10 +1,10 @@
 {
-  "name": "GenericUIItems.CoreState.Bridge.Tests",
-  "rootNamespace": "JorisHoef.GenericUIItems.CoreState.Tests",
+  "name": "Deucarian.UIBinding.CoreStateBridge.Tests",
+  "rootNamespace": "Deucarian.UIBinding.CoreStateBridge.Tests",
   "references": [
-    "GenericUIItems.CoreState.Bridge",
-    "GenericUIItems",
-    "JorisHoef.Core.State"
+    "Deucarian.UIBinding.CoreStateBridge",
+    "Deucarian.UIBinding",
+    "Deucarian.CoreState"
   ],
   "includePlatforms": [
     "Editor"

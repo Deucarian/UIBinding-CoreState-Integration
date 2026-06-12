@@ -1,11 +1,11 @@
 {
-  "name": "com.jorishoef.generic-ui-items.core-state-bridge",
+  "name": "com.deucarian.ui-binding.core-state-bridge",
   "version": "1.0.0",
-  "displayName": "JorisHoef Generic UI Items Core State Bridge",
-  "description": "Bridge package that binds Core State repositories and selection services to Generic UI Items containers.",
+  "displayName": "Deucarian UI Binding Core State Bridge",
+  "description": "Bridge package that binds Core State repositories and selection services to UI Binding containers.",
   "unity": "2021.3",
   "author": {
-    "name": "JorisHoef"
+    "name": "Deucarian"
   },
   "keywords": [
     "ui",
@@ -15,13 +15,13 @@
     "bridge"
   ],
   "dependencies": {
-    "com.jorishoef.generic-ui-items": "1.0.0",
-    "com.jorishoef.core.state": "1.0.0"
+    "com.deucarian.core-state": "1.0.0",
+    "com.deucarian.ui-binding": "1.0.0"
   },
   "samples": [
     {
       "displayName": "Basic Usage",
-      "description": "Example scene scripts showing a Core State repository and selection service bound to a Generic UI Items container.",
+      "description": "Example scene scripts showing a Core State repository and selection service bound to a UI Binding container.",
       "path": "Samples~/BasicUsage"
     }
   ]

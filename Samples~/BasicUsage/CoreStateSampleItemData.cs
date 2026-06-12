@@ -1,6 +1,6 @@
-using JorisHoef.Core.State;
+using Deucarian.CoreState;
 
-namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
+namespace Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage
 {
     public sealed class CoreStateSampleItemData : IIdentifiable<string>
     {

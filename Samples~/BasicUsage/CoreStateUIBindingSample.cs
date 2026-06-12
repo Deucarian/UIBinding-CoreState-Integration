@@ -1,13 +1,13 @@
 using System;
-using JorisHoef.Core.State;
-using JorisHoef.GenericUIItems;
+using Deucarian.CoreState;
+using Deucarian.UIBinding;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
+namespace Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage
 {
-    public sealed class CoreStateGenericUIItemsSample : MonoBehaviour
+    public sealed class CoreStateUIBindingSample : MonoBehaviour
     {
         [SerializeField] private RectTransform parent;
         [SerializeField] private GameObject itemPrefab;
@@ -20,7 +20,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
 
         private Repository<string, CoreStateSampleItemData> _repository;
         private SelectionService<string, CoreStateSampleItemData> _selection;
-        private GenericUIContainer<CoreStateSampleItemData, string> _container;
+        private UIBindingContainer<CoreStateSampleItemData, string> _container;
         private RepositoryUIBinding<string, CoreStateSampleItemData> _repositoryBinding;
         private SelectionUIBinding<string, CoreStateSampleItemData> _selectionBinding;
         private int _nextId = 3;
@@ -120,7 +120,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
 
             sampleItem.Configure(this, null, null, null);
 
-            _container = new GenericUIContainer<CoreStateSampleItemData, string>(
+            _container = new UIBindingContainer<CoreStateSampleItemData, string>(
                 parent,
                 itemPrefab,
                 item => item.Id);
@@ -186,7 +186,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
             Canvas canvas = GetComponentInParent<Canvas>();
             if (canvas == null)
             {
-                GameObject canvasObject = new GameObject("Core State Generic UI Sample", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+                GameObject canvasObject = new GameObject("Core State UI Binding Sample", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
                 canvas = canvasObject.GetComponent<Canvas>();
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
                 canvasObject.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;

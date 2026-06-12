@@ -1,28 +1,28 @@
-# JorisHoef Generic UI Items Core State Bridge
+# Deucarian UI Binding Core State Bridge
 
 ## Overview
 
-JorisHoef Generic UI Items Core State Bridge is a small Unity UPM package that connects two standalone packages:
+Deucarian UI Binding Core State Bridge is a small Unity UPM package that connects two standalone packages:
 
-- `com.jorishoef.generic-ui-items`
-- `com.jorishoef.core.state`
+- `com.deucarian.ui-binding`
+- `com.deucarian.core-state`
 
-The package exists so Generic UI Items can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this bridge package or each other.
+The package exists so UI Binding can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this bridge package or each other.
 
-Package ID: `com.jorishoef.generic-ui-items.core-state-bridge`
+Package ID: `com.deucarian.ui-binding.core-state-bridge`
 
 ## Installation
 
-Install this package when a project uses both Generic UI Items and Core State and wants a reusable bridge between repositories, selection services, and UI containers.
+Install this package when a project uses both UI Binding and Core State and wants a reusable bridge between repositories, selection services, and UI containers.
 
 For local development, reference all three packages by file path from a separate Unity project:
 
 ```json
 {
   "dependencies": {
-    "com.jorishoef.generic-ui-items": "file:C:/Repositories/GenericUIItems",
-    "com.jorishoef.core.state": "file:C:/Repositories/Core-State",
-    "com.jorishoef.generic-ui-items.core-state-bridge": "https://github.com/JorisHoef/GenericUIItems-CoreState-Bridge.git#main"
+    "com.deucarian.ui-binding": "file:C:/Repositories/UIBinding",
+    "com.deucarian.core-state": "file:C:/Repositories/Core-State",
+    "com.deucarian.ui-binding.core-state-bridge": "https://github.com/Deucarian/UI-Binding-CoreState-Bridge.git#main"
   }
 }
 ```
@@ -31,15 +31,15 @@ The package requires Unity `2021.3` or newer.
 
 ## Repository Binding
 
-`RepositoryUIBinding<TKey, T>` keeps an `IReadOnlyRepository<TKey, T>` synchronized with an `IGenericUIContainer<T, TKey>`.
+`RepositoryUIBinding<TKey, T>` keeps an `IReadOnlyRepository<TKey, T>` synchronized with an `IUIBindingContainer<T, TKey>`.
 
 ```csharp
-using JorisHoef.Core.State;
-using JorisHoef.GenericUIItems;
-using JorisHoef.GenericUIItems.CoreState;
+using Deucarian.CoreState;
+using Deucarian.UIBinding;
+using Deucarian.UIBinding.CoreStateBridge;
 
 IReadOnlyRepository<string, ProjectData> repository = projectRepository;
-IGenericUIContainer<ProjectData, string> container = projectContainer;
+IUIBindingContainer<ProjectData, string> container = projectContainer;
 
 var binding = new RepositoryUIBinding<string, ProjectData>(
     repository,
@@ -64,10 +64,10 @@ The caller owns binding lifetime. There are no static caches, global discovery h
 
 ## Selection Binding
 
-`SelectionUIBinding<TKey, T>` reflects `ISelectionService<TKey, T>` state into Generic UI Items selection visuals when the container has an `IGenericUIItemVisual<TKey, T>` configured. If no visual strategy is configured, it falls back to UI item components that implement `ISelectableUIItem`.
+`SelectionUIBinding<TKey, T>` reflects `ISelectionService<TKey, T>` state into UI Binding selection visuals when the container has an `IUIBindingItemVisual<TKey, T>` configured. If no visual strategy is configured, it falls back to UI item components that implement `ISelectableUIItem`.
 
 ```csharp
-using JorisHoef.GenericUIItems.CoreState;
+using Deucarian.UIBinding.CoreStateBridge;
 
 public sealed class ProjectItem : GenericItem<ProjectData>, ISelectableUIItem
 {
@@ -87,7 +87,7 @@ selectionBinding.Bind();
 With the visual strategy API, item components no longer need to own selection visuals:
 
 ```csharp
-container.SetItemVisual(new GraphicTintGenericUIItemVisual<string, ProjectData>(
+container.SetItemVisual(new GraphicTintUIBindingItemVisual<string, ProjectData>(
     normalColor,
     selectedColor,
     hoveredColor));
@@ -106,8 +106,8 @@ Click-to-select behavior belongs in the item or view code that owns the concrete
 
 ## Public API
 
-- `RepositoryUIBinding<TKey, T>`: binds Core State repository changes to a Generic UI Items container.
-- `SelectionUIBinding<TKey, T>`: applies Core State selection changes to Generic UI Items visual containers or selectable UI items.
+- `RepositoryUIBinding<TKey, T>`: binds Core State repository changes to a UI Binding container.
+- `SelectionUIBinding<TKey, T>`: applies Core State selection changes to UI Binding visual containers or selectable UI items.
 - `ISelectableUIItem`: optional UI item contract for selected visual state.
 
 ## Samples
@@ -116,7 +116,7 @@ The package contains one sample entry:
 
 - `Basic Usage`: sample scripts for a repository-backed UI list with add, update, remove, clear, reset, and click-to-select behavior.
 
-The sample uses fake local data only and does not use APIHelper, networking, global state, or app-specific services.
+The sample uses fake local data only and does not use API, networking, global state, or app-specific services.
 
 ## Local Validation
 
@@ -126,20 +126,20 @@ Run structural validation from the package root:
 pwsh ./Tools/Validate-Package.ps1
 ```
 
-For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `GenericUIItems.CoreState.Bridge.Tests`.
+For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `Deucarian.UIBinding.CoreStateBridge.Tests`.
 
 Package tests are compiled only when the project manifest marks this package as testable:
 
 ```json
 "testables": [
-  "com.jorishoef.generic-ui-items.core-state-bridge"
+  "com.deucarian.ui-binding.core-state-bridge"
 ]
 ```
 
 Recommended playground path:
 
 ```text
-C:/Repositories/GenericUIItems-CoreState-Bridge-TestProject
+C:/Repositories/UIBinding-CoreState-Bridge-TestProject
 ```
 
 Do not copy source code between repositories. Consume the packages through Unity Package Manager file references.
@@ -152,4 +152,4 @@ Public API changes require README updates, changelog entries, and focused EditMo
 
 - This package is bridge code only.
 - It does not provide networking, persistence, MVVM, reactive frameworks, service location, pooling, virtualization, or app-specific UI architecture.
-- Selection visuals can be handled by a Generic UI Items visual strategy or, for older item prefabs, by item components that implement `ISelectableUIItem`.
+- Selection visuals can be handled by a UI Binding visual strategy or, for older item prefabs, by item components that implement `ISelectableUIItem`.

@@ -8,17 +8,17 @@ $requiredFiles = @(
     "CHANGELOG.md",
     "LICENSE.md",
     "CONTRIBUTING.md",
-    "Runtime/GenericUIItems.CoreState.asmdef",
+    "Runtime/Deucarian.UIBinding.CoreStateBridge.asmdef",
     "Runtime/RepositoryUIBinding.cs",
     "Runtime/SelectionUIBinding.cs",
     "Runtime/ISelectableUIItem.cs",
-    "Tests/Editor/GenericUIItems.CoreState.Tests.asmdef",
+    "Tests/Editor/Deucarian.UIBinding.CoreStateBridge.Tests.asmdef",
     "Tests/Editor/RepositoryUIBindingTests.cs",
     "Tests/Editor/SelectionUIBindingTests.cs",
-    "Samples~/BasicUsage/GenericUIItems.CoreState.Samples.BasicUsage.asmdef",
-    "Samples~/BasicUsage/GenericUIItems.CoreState.Samples.BasicUsage.asmdef.meta",
-    "Samples~/BasicUsage/CoreStateGenericUIItemsSample.cs",
-    "Samples~/BasicUsage/CoreStateGenericUIItemsSample.cs.meta",
+    "Samples~/BasicUsage/Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage.asmdef",
+    "Samples~/BasicUsage/Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage.asmdef.meta",
+    "Samples~/BasicUsage/CoreStateUIBindingSample.cs",
+    "Samples~/BasicUsage/CoreStateUIBindingSample.cs.meta",
     "Samples~/BasicUsage/CoreStateSampleItem.cs",
     "Samples~/BasicUsage/CoreStateSampleItem.cs.meta",
     "Samples~/BasicUsage/CoreStateSampleItemData.cs",
@@ -50,7 +50,7 @@ foreach ($file in $requiredFiles) {
 }
 
 $package = Get-Content -LiteralPath (Join-Path $root "package.json") -Raw | ConvertFrom-Json
-if ($package.name -ne "com.jorishoef.generic-ui-items.core-state-bridge") {
+if ($package.name -ne "com.deucarian.ui-binding.core-state-bridge") {
     throw "Unexpected package name: $($package.name)"
 }
 
@@ -58,40 +58,40 @@ if ($package.version -notmatch "^\d+\.\d+\.\d+$") {
     throw "Package version must be semver MAJOR.MINOR.PATCH: $($package.version)"
 }
 
-if ($package.dependencies."com.jorishoef.generic-ui-items" -ne "1.0.0") {
-    throw "Expected dependency com.jorishoef.generic-ui-items version 1.0.0"
+if ($package.dependencies."com.deucarian.ui-binding" -ne "1.0.0") {
+    throw "Expected dependency com.deucarian.ui-binding version 1.0.0"
 }
 
-if ($package.dependencies."com.jorishoef.core.state" -ne "1.0.0") {
-    throw "Expected dependency com.jorishoef.core.state version 1.0.0"
+if ($package.dependencies."com.deucarian.core-state" -ne "1.0.0") {
+    throw "Expected dependency com.deucarian.core-state version 1.0.0"
 }
 
-$runtimeAsmdef = Get-Content -LiteralPath (Join-Path $root "Runtime/GenericUIItems.CoreState.asmdef") -Raw | ConvertFrom-Json
-if ($runtimeAsmdef.name -ne "GenericUIItems.CoreState.Bridge") {
+$runtimeAsmdef = Get-Content -LiteralPath (Join-Path $root "Runtime/Deucarian.UIBinding.CoreStateBridge.asmdef") -Raw | ConvertFrom-Json
+if ($runtimeAsmdef.name -ne "Deucarian.UIBinding.CoreStateBridge") {
     throw "Unexpected runtime asmdef name: $($runtimeAsmdef.name)"
 }
 
-if ($runtimeAsmdef.references -notcontains "GenericUIItems") {
-    throw "Runtime asmdef must reference GenericUIItems"
+if ($runtimeAsmdef.references -notcontains "Deucarian.UIBinding") {
+    throw "Runtime asmdef must reference Deucarian.UIBinding"
 }
 
-if ($runtimeAsmdef.references -notcontains "JorisHoef.Core.State") {
-    throw "Runtime asmdef must reference JorisHoef.Core.State"
+if ($runtimeAsmdef.references -notcontains "Deucarian.CoreState") {
+    throw "Runtime asmdef must reference Deucarian.CoreState"
 }
 
 if ($runtimeAsmdef.references -contains "UnityEditor") {
     throw "Runtime asmdef must not reference UnityEditor"
 }
 
-$testAsmdef = Get-Content -LiteralPath (Join-Path $root "Tests/Editor/GenericUIItems.CoreState.Tests.asmdef") -Raw | ConvertFrom-Json
-foreach ($reference in @("GenericUIItems.CoreState.Bridge", "GenericUIItems", "JorisHoef.Core.State")) {
+$testAsmdef = Get-Content -LiteralPath (Join-Path $root "Tests/Editor/Deucarian.UIBinding.CoreStateBridge.Tests.asmdef") -Raw | ConvertFrom-Json
+foreach ($reference in @("Deucarian.UIBinding.CoreStateBridge", "Deucarian.UIBinding", "Deucarian.CoreState")) {
     if ($testAsmdef.references -notcontains $reference) {
         throw "Tests asmdef must reference $reference"
     }
 }
 
-$sampleAsmdef = Get-Content -LiteralPath (Join-Path $root "Samples~/BasicUsage/GenericUIItems.CoreState.Samples.BasicUsage.asmdef") -Raw | ConvertFrom-Json
-foreach ($reference in @("GenericUIItems.CoreState.Bridge", "GenericUIItems", "JorisHoef.Core.State", "Unity.ugui")) {
+$sampleAsmdef = Get-Content -LiteralPath (Join-Path $root "Samples~/BasicUsage/Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage.asmdef") -Raw | ConvertFrom-Json
+foreach ($reference in @("Deucarian.UIBinding.CoreStateBridge", "Deucarian.UIBinding", "Deucarian.CoreState", "Unity.ugui")) {
     if ($sampleAsmdef.references -notcontains $reference) {
         throw "Sample asmdef must reference $reference"
     }
@@ -108,24 +108,24 @@ foreach ($directory in $forbiddenProjectScaffolding) {
 $runtimeFiles = Get-ChildItem -LiteralPath (Join-Path $root "Runtime") -Recurse -File
 foreach ($file in $runtimeFiles) {
     $content = Get-Content -LiteralPath $file.FullName -Raw
-    if ($content -match "APIHelper|ServiceLocator|static\s+readonly\s+Dictionary|static\s+Dictionary") {
+    if ($content -match "API|ServiceLocator|static\s+readonly\s+Dictionary|static\s+Dictionary") {
         throw "Runtime contains forbidden bridge scope or static cache pattern in $($file.Name)"
     }
 }
 
-$genericUIItemsRoot = "C:/Repositories/GenericUIItems"
+$uiBindingRoot = "C:/Repositories/UI-Binding"
 $coreStateRoot = "C:/Repositories/Core-State"
-if (Test-Path -LiteralPath $genericUIItemsRoot) {
-    $genericPackage = Get-Content -LiteralPath (Join-Path $genericUIItemsRoot "package.json") -Raw
-    if ($genericPackage -match "core.state|generic-ui-items\.core-state-bridge") {
-        throw "GenericUIItems package must not depend on Core State or this bridge package."
+if (Test-Path -LiteralPath $uiBindingRoot) {
+    $uiBindingPackage = Get-Content -LiteralPath (Join-Path $uiBindingRoot "package.json") -Raw
+    if ($uiBindingPackage -match "core-state|ui-binding\.core-state-bridge") {
+        throw "UIBinding package must not depend on Core State or this bridge package."
     }
 }
 
 if (Test-Path -LiteralPath $coreStateRoot) {
     $corePackage = Get-Content -LiteralPath (Join-Path $coreStateRoot "package.json") -Raw
-    if ($corePackage -match "generic-ui-items|generic-ui-items\.core-state-bridge") {
-        throw "Core State package must not depend on Generic UI Items or this bridge package."
+    if ($corePackage -match "ui-binding|ui-binding\.core-state-bridge") {
+        throw "Core State package must not depend on UI Binding or this bridge package."
     }
 }
 
@@ -135,4 +135,4 @@ if ($generatedArtifacts.Count -gt 0) {
     throw "Generated artifacts are present in the package repository."
 }
 
-Write-Host "GenericUIItems.CoreState.Bridge package validation passed."
+Write-Host "Deucarian.UIBinding.CoreStateBridge package validation passed."

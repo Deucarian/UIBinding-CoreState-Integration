@@ -1,10 +1,10 @@
 {
-  "name": "GenericUIItems.CoreState.Bridge.Samples.BasicUsage",
-  "rootNamespace": "JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage",
+  "name": "Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage",
+  "rootNamespace": "Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage",
   "references": [
-    "GenericUIItems.CoreState.Bridge",
-    "GenericUIItems",
-    "JorisHoef.Core.State",
+    "Deucarian.UIBinding.CoreStateBridge",
+    "Deucarian.UIBinding",
+    "Deucarian.CoreState",
     "Unity.ugui"
   ],
   "includePlatforms": [],

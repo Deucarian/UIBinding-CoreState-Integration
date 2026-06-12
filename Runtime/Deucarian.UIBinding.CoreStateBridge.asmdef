@@ -1,9 +1,9 @@
 {
-  "name": "GenericUIItems.CoreState.Bridge",
-  "rootNamespace": "JorisHoef.GenericUIItems.CoreState",
+  "name": "Deucarian.UIBinding.CoreStateBridge",
+  "rootNamespace": "Deucarian.UIBinding.CoreStateBridge",
   "references": [
-    "GenericUIItems",
-    "JorisHoef.Core.State"
+    "Deucarian.UIBinding",
+    "Deucarian.CoreState"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

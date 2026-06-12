@@ -1,22 +1,22 @@
 using System;
 using System.Reflection;
-using JorisHoef.Core.State;
-using JorisHoef.GenericUIItems;
+using Deucarian.CoreState;
+using Deucarian.UIBinding;
 
-namespace JorisHoef.GenericUIItems.CoreState
+namespace Deucarian.UIBinding.CoreStateBridge
 {
     /// <summary>
-    /// Reflects a Core State selection service into selectable Generic UI Items.
+    /// Reflects a Core State selection service into selectable UI Binding.
     /// </summary>
     public sealed class SelectionUIBinding<TKey, T> : IDisposable
     {
         private readonly ISelectionService<TKey, T> _selectionService;
-        private readonly IGenericUIContainer<T, TKey> _container;
+        private readonly IUIBindingContainer<T, TKey> _container;
         private bool _isBound;
 
         public SelectionUIBinding(
             ISelectionService<TKey, T> selectionService,
-            IGenericUIContainer<T, TKey> container)
+            IUIBindingContainer<T, TKey> container)
         {
             _selectionService = selectionService ?? throw new ArgumentNullException(nameof(selectionService));
             _container = container ?? throw new ArgumentNullException(nameof(container));

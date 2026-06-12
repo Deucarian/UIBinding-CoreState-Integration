@@ -1,12 +1,12 @@
-using JorisHoef.GenericUIItems;
+using Deucarian.UIBinding;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
+namespace Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage
 {
     public sealed class CoreStateSampleItem : GenericItem<CoreStateSampleItemData>, ISelectableUIItem
     {
-        [SerializeField] private CoreStateGenericUIItemsSample owner;
+        [SerializeField] private CoreStateUIBindingSample owner;
         [SerializeField] private Text label;
         [SerializeField] private Image background;
         [SerializeField] private Button button;
@@ -33,7 +33,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Samples.BasicUsage
         }
 
         public void Configure(
-            CoreStateGenericUIItemsSample sampleOwner,
+            CoreStateUIBindingSample sampleOwner,
             Text itemLabel,
             Image itemBackground,
             Button itemButton)

@@ -2,11 +2,11 @@
 
 ## Scope
 
-JorisHoef Generic UI Items Core State Bridge is bridge code between Generic UI Items and Core State.
+Deucarian UI Binding Core State Bridge is bridge code between UI Binding and Core State.
 
-Keep Generic UI Items independent from Core State. Keep Core State independent from Generic UI Items. Do not add references from either core package back to this bridge package.
+Keep UI Binding independent from Core State. Keep Core State independent from UI Binding. Do not add references from either core package back to this bridge package.
 
-Do not add networking, APIHelper, MVVM, reactive framework dependencies, service locators, hidden global state, or app-specific behavior.
+Do not add networking, API, MVVM, reactive framework dependencies, service locators, hidden global state, or app-specific behavior.
 
 ## Local Validation
 
@@ -19,16 +19,16 @@ pwsh ./Tools/Validate-Package.ps1
 For Unity validation, use a separate Unity test project that references the local packages by file path:
 
 ```json
-"com.jorishoef.generic-ui-items": "file:C:/Repositories/GenericUIItems",
-"com.jorishoef.core.state": "file:C:/Repositories/Core-State",
-"com.jorishoef.generic-ui-items.core-state-bridge": "https://github.com/JorisHoef/GenericUIItems-CoreState-Bridge.git#main"
+"com.deucarian.ui-binding": "file:C:/Repositories/UIBinding",
+"com.deucarian.core-state": "file:C:/Repositories/Core-State",
+"com.deucarian.ui-binding.core-state-bridge": "https://github.com/Deucarian/UI-Binding-CoreState-Bridge.git#main"
 ```
 
 Also add the bridge package to the project manifest `testables` array when running package tests:
 
 ```json
 "testables": [
-  "com.jorishoef.generic-ui-items.core-state-bridge"
+  "com.deucarian.ui-binding.core-state-bridge"
 ]
 ```
 

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using JorisHoef.Core.State;
-using JorisHoef.GenericUIItems;
+using Deucarian.CoreState;
+using Deucarian.UIBinding;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace JorisHoef.GenericUIItems.CoreState.Tests
+namespace Deucarian.UIBinding.CoreStateBridge.Tests
 {
     public sealed class SelectionUIBindingTests
     {
@@ -90,7 +90,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
                 new TestData("two", "Second"));
             SelectionService<string, TestData> selection = new SelectionService<string, TestData>(repository);
             selection.Select("two");
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var repositoryBinding = new RepositoryUIBinding<string, TestData>(repository, container);
             var selectionBinding = new SelectionUIBinding<string, TestData>(selection, container);
 
@@ -132,7 +132,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
                 new TestData("one", "First"),
                 new TestData("two", "Second"));
             SelectionService<string, TestData> selection = new SelectionService<string, TestData>(repository);
-            GenericUIContainer<TestData, string> container = CreateContainer(visual);
+            UIBindingContainer<TestData, string> container = CreateContainer(visual);
             var repositoryBinding = new RepositoryUIBinding<string, TestData>(repository, container);
             var selectionBinding = new SelectionUIBinding<string, TestData>(selection, container);
 
@@ -142,9 +142,9 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             return new BindingContext(repository, selection, container, repositoryBinding, selectionBinding);
         }
 
-        private GenericUIContainer<TestData, string> CreateContainer(RecordingVisual visual = null)
+        private UIBindingContainer<TestData, string> CreateContainer(RecordingVisual visual = null)
         {
-            return new GenericUIContainer<TestData, string>(_parent, _prefab, data => data.Id, visual);
+            return new UIBindingContainer<TestData, string>(_parent, _prefab, data => data.Id, visual);
         }
 
         private static Repository<string, TestData> CreateRepository(params TestData[] items)
@@ -154,7 +154,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             return repository;
         }
 
-        private static TestItem GetItem(GenericUIContainer<TestData, string> container, string key)
+        private static TestItem GetItem(UIBindingContainer<TestData, string> container, string key)
         {
             Assert.That(container.TryGetItem(key, out ISettableItem<TestData> item), Is.True);
             return (TestItem)item;
@@ -165,7 +165,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             public BindingContext(
                 Repository<string, TestData> repository,
                 SelectionService<string, TestData> selection,
-                GenericUIContainer<TestData, string> container,
+                UIBindingContainer<TestData, string> container,
                 RepositoryUIBinding<string, TestData> repositoryBinding,
                 SelectionUIBinding<string, TestData> selectionBinding)
             {
@@ -178,7 +178,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
 
             public Repository<string, TestData> Repository { get; }
             public SelectionService<string, TestData> Selection { get; }
-            public GenericUIContainer<TestData, string> Container { get; }
+            public UIBindingContainer<TestData, string> Container { get; }
             public RepositoryUIBinding<string, TestData> RepositoryBinding { get; }
             public SelectionUIBinding<string, TestData> SelectionBinding { get; }
         }
@@ -211,7 +211,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             }
         }
 
-        private sealed class RecordingVisual : IGenericUIItemVisual<string, TestData>
+        private sealed class RecordingVisual : IUIBindingItemVisual<string, TestData>
         {
             public readonly List<string> Calls = new List<string>();
 

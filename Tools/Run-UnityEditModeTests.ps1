@@ -17,11 +17,11 @@ $arguments = @(
     "-testPlatform",
     "editmode",
     "-assemblyNames",
-    "GenericUIItems.CoreState.Bridge.Tests",
+    "Deucarian.UIBinding.CoreStateBridge.Tests",
     "-testResults",
-    (Join-Path $ProjectPath "GenericUIItems.CoreState.Bridge.TestResults.xml"),
+    (Join-Path $ProjectPath "Deucarian.UIBinding.CoreStateBridge.TestResults.xml"),
     "-logFile",
-    (Join-Path $ProjectPath "GenericUIItems.CoreState.Bridge.Unity.log")
+    (Join-Path $ProjectPath "Deucarian.UIBinding.CoreStateBridge.Unity.log")
 )
 
 $process = Start-Process `

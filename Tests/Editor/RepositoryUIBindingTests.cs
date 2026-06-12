@@ -1,10 +1,10 @@
 using System.Linq;
-using JorisHoef.Core.State;
-using JorisHoef.GenericUIItems;
+using Deucarian.CoreState;
+using Deucarian.UIBinding;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace JorisHoef.GenericUIItems.CoreState.Tests
+namespace Deucarian.UIBinding.CoreStateBridge.Tests
 {
     public sealed class RepositoryUIBindingTests
     {
@@ -38,7 +38,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             Repository<string, TestData> repository = CreateRepository(
                 new TestData("one", "First"),
                 new TestData("two", "Second"));
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
 
             binding.Bind();
@@ -52,7 +52,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
         public void RepositoryAdd_CreatesUIItem()
         {
             Repository<string, TestData> repository = CreateRepository();
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
             binding.Bind();
 
@@ -66,7 +66,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
         public void RepositoryUpdate_UpdatesUIItem()
         {
             Repository<string, TestData> repository = CreateRepository(new TestData("one", "First"));
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
             binding.Bind();
 
@@ -82,7 +82,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             Repository<string, TestData> repository = CreateRepository(
                 new TestData("one", "First"),
                 new TestData("two", "Second"));
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
             binding.Bind();
 
@@ -100,7 +100,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             Repository<string, TestData> repository = CreateRepository(
                 new TestData("one", "First"),
                 new TestData("two", "Second"));
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
             binding.Bind();
 
@@ -114,7 +114,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
         public void Unbind_StopsRepositoryUpdates()
         {
             Repository<string, TestData> repository = CreateRepository(new TestData("one", "First"));
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
             binding.Bind();
 
@@ -132,7 +132,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
         public void UnbindAndDispose_AreIdempotent()
         {
             Repository<string, TestData> repository = CreateRepository(new TestData("one", "First"));
-            GenericUIContainer<TestData, string> container = CreateContainer();
+            UIBindingContainer<TestData, string> container = CreateContainer();
             var binding = new RepositoryUIBinding<string, TestData>(repository, container);
 
             Assert.DoesNotThrow(() =>
@@ -153,8 +153,8 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
         {
             Repository<string, TestData> firstRepository = CreateRepository(new TestData("one", "First"));
             Repository<string, TestData> secondRepository = CreateRepository(new TestData("two", "Second"));
-            GenericUIContainer<TestData, string> firstContainer = CreateContainer();
-            GenericUIContainer<TestData, string> secondContainer = CreateContainer();
+            UIBindingContainer<TestData, string> firstContainer = CreateContainer();
+            UIBindingContainer<TestData, string> secondContainer = CreateContainer();
             var firstBinding = new RepositoryUIBinding<string, TestData>(firstRepository, firstContainer);
             var secondBinding = new RepositoryUIBinding<string, TestData>(secondRepository, secondContainer);
 
@@ -170,9 +170,9 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             Assert.That(secondContainer.TryGetItem("one", out _), Is.False);
         }
 
-        private GenericUIContainer<TestData, string> CreateContainer()
+        private UIBindingContainer<TestData, string> CreateContainer()
         {
-            return new GenericUIContainer<TestData, string>(_parent, _prefab, data => data.Id);
+            return new UIBindingContainer<TestData, string>(_parent, _prefab, data => data.Id);
         }
 
         private static Repository<string, TestData> CreateRepository(params TestData[] items)
@@ -182,7 +182,7 @@ namespace JorisHoef.GenericUIItems.CoreState.Tests
             return repository;
         }
 
-        private static TestItem GetItem(GenericUIContainer<TestData, string> container, string key)
+        private static TestItem GetItem(UIBindingContainer<TestData, string> container, string key)
         {
             Assert.That(container.TryGetItem(key, out ISettableItem<TestData> item), Is.True);
             return (TestItem)item;
