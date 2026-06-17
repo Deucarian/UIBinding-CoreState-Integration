@@ -1,18 +1,16 @@
 {
-  "name": "Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage",
-  "rootNamespace": "Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage",
+  "name": "Deucarian.UIBinding.CoreStateIntegration",
+  "rootNamespace": "Deucarian.UIBinding.CoreStateIntegration",
   "references": [
-    "Deucarian.UIBinding.CoreStateBridge",
     "Deucarian.UIBinding",
-    "Deucarian.CoreState",
-    "Unity.ugui"
+    "Deucarian.CoreState"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
   "overrideReferences": false,
   "precompiledReferences": [],
-  "autoReferenced": false,
+  "autoReferenced": true,
   "defineConstraints": [],
   "versionDefines": [],
   "noEngineReferences": false

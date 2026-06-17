@@ -3,7 +3,7 @@ using System.Reflection;
 using Deucarian.CoreState;
 using Deucarian.UIBinding;
 
-namespace Deucarian.UIBinding.CoreStateBridge
+namespace Deucarian.UIBinding.CoreStateIntegration
 {
     /// <summary>
     /// Reflects a Core State selection service into selectable UI Binding.

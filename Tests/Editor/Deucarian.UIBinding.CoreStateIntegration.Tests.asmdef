@@ -1,8 +1,8 @@
 {
-  "name": "Deucarian.UIBinding.CoreStateBridge.Tests",
-  "rootNamespace": "Deucarian.UIBinding.CoreStateBridge.Tests",
+  "name": "Deucarian.UIBinding.CoreStateIntegration.Tests",
+  "rootNamespace": "Deucarian.UIBinding.CoreStateIntegration.Tests",
   "references": [
-    "Deucarian.UIBinding.CoreStateBridge",
+    "Deucarian.UIBinding.CoreStateIntegration",
     "Deucarian.UIBinding",
     "Deucarian.CoreState"
   ],

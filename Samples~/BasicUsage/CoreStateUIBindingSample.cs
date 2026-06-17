@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage
+namespace Deucarian.UIBinding.CoreStateIntegration.Samples.BasicUsage
 {
     public sealed class CoreStateUIBindingSample : MonoBehaviour
     {

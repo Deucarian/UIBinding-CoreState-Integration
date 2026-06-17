@@ -2,7 +2,7 @@ using Deucarian.UIBinding;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage
+namespace Deucarian.UIBinding.CoreStateIntegration.Samples.BasicUsage
 {
     public sealed class CoreStateSampleItem : GenericItem<CoreStateSampleItemData>, ISelectableUIItem
     {

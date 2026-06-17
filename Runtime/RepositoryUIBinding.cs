@@ -2,7 +2,7 @@ using System;
 using Deucarian.CoreState;
 using Deucarian.UIBinding;
 
-namespace Deucarian.UIBinding.CoreStateBridge
+namespace Deucarian.UIBinding.CoreStateIntegration
 {
     /// <summary>
     /// Synchronizes a Core State repository into a UI Binding container.

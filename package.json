@@ -1,8 +1,8 @@
 {
-  "name": "com.deucarian.ui-binding.core-state-bridge",
-  "version": "1.0.0",
-  "displayName": "Deucarian UI Binding Core State Bridge",
-  "description": "Bridge package that binds Core State repositories and selection services to UI Binding containers.",
+  "name": "com.deucarian.ui-binding.core-state-integration",
+  "version": "1.0.1",
+  "displayName": "Deucarian UI Binding Core State Integration",
+  "description": "Integration package that binds Core State repositories and selection services to UI Binding containers.",
   "unity": "2021.3",
   "author": {
     "name": "Deucarian"
@@ -12,11 +12,11 @@
     "state",
     "repository",
     "selection",
-    "bridge"
+    "integration"
   ],
   "dependencies": {
     "com.deucarian.core-state": "1.0.0",
-    "com.deucarian.ui-binding": "1.0.0"
+    "com.deucarian.ui-binding": "1.0.1"
   },
   "samples": [
     {

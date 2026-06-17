@@ -1,6 +1,6 @@
 using Deucarian.CoreState;
 
-namespace Deucarian.UIBinding.CoreStateBridge.Samples.BasicUsage
+namespace Deucarian.UIBinding.CoreStateIntegration.Samples.BasicUsage
 {
     public sealed class CoreStateSampleItemData : IIdentifiable<string>
     {

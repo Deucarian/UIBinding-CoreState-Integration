@@ -1,19 +1,21 @@
-# Deucarian UI Binding Core State Bridge
+# Deucarian UI Binding Core State Integration
 
 ## Overview
 
-Deucarian UI Binding Core State Bridge is a small Unity UPM package that connects two standalone packages:
+Deucarian UI Binding Core State Integration is a small Unity UPM package that connects two standalone packages:
 
 - `com.deucarian.ui-binding`
 - `com.deucarian.core-state`
 
-The package exists so UI Binding can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this bridge package or each other.
+The package exists so UI Binding can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this integration package or each other.
 
-Package ID: `com.deucarian.ui-binding.core-state-bridge`
+Package ID: `com.deucarian.ui-binding.core-state-integration`
+
+Migration note: replace old manifest entries for `com.deucarian.ui-binding.core-state-bridge` with `com.deucarian.ui-binding.core-state-integration`. The source repository URL still uses `UI-Binding-CoreState-Bridge.git` until the GitHub repository is renamed.
 
 ## Installation
 
-Install this package when a project uses both UI Binding and Core State and wants a reusable bridge between repositories, selection services, and UI containers.
+Install this package when a project uses both UI Binding and Core State and wants a reusable integration between repositories, selection services, and UI containers.
 
 For local development, reference all three packages by file path from a separate Unity project:
 
@@ -22,7 +24,7 @@ For local development, reference all three packages by file path from a separate
   "dependencies": {
     "com.deucarian.ui-binding": "file:C:/Repositories/UIBinding",
     "com.deucarian.core-state": "file:C:/Repositories/Core-State",
-    "com.deucarian.ui-binding.core-state-bridge": "https://github.com/Deucarian/UI-Binding-CoreState-Bridge.git#main"
+    "com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UI-Binding-CoreState-Bridge.git#main"
   }
 }
 ```
@@ -36,7 +38,7 @@ The package requires Unity `2021.3` or newer.
 ```csharp
 using Deucarian.CoreState;
 using Deucarian.UIBinding;
-using Deucarian.UIBinding.CoreStateBridge;
+using Deucarian.UIBinding.CoreStateIntegration;
 
 IReadOnlyRepository<string, ProjectData> repository = projectRepository;
 IUIBindingContainer<ProjectData, string> container = projectContainer;
@@ -67,7 +69,7 @@ The caller owns binding lifetime. There are no static caches, global discovery h
 `SelectionUIBinding<TKey, T>` reflects `ISelectionService<TKey, T>` state into UI Binding selection visuals when the container has an `IUIBindingItemVisual<TKey, T>` configured. If no visual strategy is configured, it falls back to UI item components that implement `ISelectableUIItem`.
 
 ```csharp
-using Deucarian.UIBinding.CoreStateBridge;
+using Deucarian.UIBinding.CoreStateIntegration;
 
 public sealed class ProjectItem : GenericItem<ProjectData>, ISelectableUIItem
 {
@@ -126,20 +128,20 @@ Run structural validation from the package root:
 pwsh ./Tools/Validate-Package.ps1
 ```
 
-For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `Deucarian.UIBinding.CoreStateBridge.Tests`.
+For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `Deucarian.UIBinding.CoreStateIntegration.Tests`.
 
 Package tests are compiled only when the project manifest marks this package as testable:
 
 ```json
 "testables": [
-  "com.deucarian.ui-binding.core-state-bridge"
+  "com.deucarian.ui-binding.core-state-integration"
 ]
 ```
 
 Recommended playground path:
 
 ```text
-C:/Repositories/UIBinding-CoreState-Bridge-TestProject
+C:/Repositories/UIBinding-CoreState-Integration-TestProject
 ```
 
 Do not copy source code between repositories. Consume the packages through Unity Package Manager file references.
@@ -150,6 +152,6 @@ Public API changes require README updates, changelog entries, and focused EditMo
 
 ## Limitations
 
-- This package is bridge code only.
+- This package is integration code only.
 - It does not provide networking, persistence, MVVM, reactive frameworks, service location, pooling, virtualization, or app-specific UI architecture.
 - Selection visuals can be handled by a UI Binding visual strategy or, for older item prefabs, by item components that implement `ISelectableUIItem`.

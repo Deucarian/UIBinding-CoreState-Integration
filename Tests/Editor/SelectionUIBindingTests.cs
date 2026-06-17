@@ -4,7 +4,7 @@ using Deucarian.UIBinding;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Deucarian.UIBinding.CoreStateBridge.Tests
+namespace Deucarian.UIBinding.CoreStateIntegration.Tests
 {
     public sealed class SelectionUIBindingTests
     {

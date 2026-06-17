@@ -1,10 +1,10 @@
 # Basic Usage
 
-This sample shows why the bridge package exists:
+This sample shows why the integration package exists:
 
 - Core State owns repository and selection data.
 - UI Binding owns UI item creation and synchronization.
-- The bridge package owns the small bridge between them.
+- The integration package owns the small integration between them.
 
 Add `CoreStateUIBindingSample` to an empty GameObject in a scene. If no UI references are assigned, the sample creates a simple UGUI layout at runtime with fake local data.
 
