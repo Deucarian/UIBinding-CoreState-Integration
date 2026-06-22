@@ -162,3 +162,9 @@ Public API changes require README updates, changelog entries, and focused EditMo
 - This package is integration code only.
 - It does not provide networking, persistence, MVVM, reactive frameworks, service location, pooling, virtualization, or app-specific UI architecture.
 - Selection visuals can be handled by a UI Binding visual strategy or, for older item prefabs, by item components that implement `ISelectableUIItem`.
+
+## Architecture / Contributor Notes
+
+- [AGENTS.md](AGENTS.md) contains repository-specific ownership and Codex guidance.
+- Deucarian architecture rules live in [Package Registry](https://github.com/Deucarian/Package-Registry/blob/develop/ARCHITECTURE.md).
+- Capability ownership is tracked in [CAPABILITY_OWNERSHIP.md](https://github.com/Deucarian/Package-Registry/blob/develop/CAPABILITY_OWNERSHIP.md).
