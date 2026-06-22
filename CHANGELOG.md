@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2 - 2026-06-22
+
+- Updated the exact `com.deucarian.ui-binding` dependency to `1.1.0`.
+
 ## 1.0.1 - 2026-06-17
 
 - Renamed the package identity from `com.deucarian.ui-binding.core-state-bridge` to `com.deucarian.ui-binding.core-state-integration`.

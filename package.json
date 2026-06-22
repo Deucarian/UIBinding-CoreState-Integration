@@ -1,6 +1,6 @@
 {
   "name": "com.deucarian.ui-binding.core-state-integration",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Deucarian UI Binding Core State Integration",
   "description": "Integration package that binds Core State repositories and selection services to UI Binding containers.",
   "unity": "2021.3",
@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "com.deucarian.core-state": "1.0.0",
-    "com.deucarian.ui-binding": "1.0.1"
+    "com.deucarian.ui-binding": "1.1.0"
   },
   "samples": [
     {
