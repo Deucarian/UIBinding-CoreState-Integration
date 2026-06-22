@@ -11,7 +11,7 @@ The package exists so UI Binding can stay focused on UI item presentation, and C
 
 Package ID: `com.deucarian.ui-binding.core-state-integration`
 
-Migration note: replace old manifest entries for `com.deucarian.ui-binding.core-state-bridge` with `com.deucarian.ui-binding.core-state-integration`. The source repository URL still uses `UI-Binding-CoreState-Bridge.git` until the GitHub repository is renamed.
+Migration note: replace old manifest entries for `com.deucarian.ui-binding.core-state-bridge` with `com.deucarian.ui-binding.core-state-integration`. Current installs use the `UIBinding-CoreState-Integration.git` repository.
 
 ## Installation
 
@@ -24,12 +24,19 @@ For local development, reference all three packages by file path from a separate
   "dependencies": {
     "com.deucarian.ui-binding": "file:C:/Repositories/UIBinding",
     "com.deucarian.core-state": "file:C:/Repositories/Core-State",
-    "com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UI-Binding-CoreState-Bridge.git#main"
+    "com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UIBinding-CoreState-Integration.git#main"
   }
 }
 ```
 
 The package requires Unity `2021.3` or newer.
+
+## Dependencies
+
+- `com.deucarian.ui-binding` supplies the UI container and item contracts.
+- `com.deucarian.core-state` supplies repository and selection-service contracts.
+
+Neither UI Binding nor Core State depends on this integration package.
 
 ## Repository Binding
 

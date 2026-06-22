@@ -21,7 +21,7 @@ For Unity validation, use a separate Unity test project that references the loca
 ```json
 "com.deucarian.ui-binding": "file:C:/Repositories/UIBinding",
 "com.deucarian.core-state": "file:C:/Repositories/Core-State",
-"com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UI-Binding-CoreState-Bridge.git#main"
+"com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UIBinding-CoreState-Integration.git#main"
 ```
 
 Also add the integration package to the project manifest `testables` array when running package tests:
