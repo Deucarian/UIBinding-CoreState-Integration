@@ -1,0 +1,23 @@
+{
+  "packageId": "com.deucarian.ui-binding.core-state-integration",
+  "displayName": "Deucarian UI Binding Core State Integration",
+  "ownedCapabilities": [],
+  "runtimeAssemblies": [
+    "Deucarian.UIBinding.CoreStateIntegration"
+  ],
+  "editorAssemblies": [],
+  "sampleAssemblies": [
+    "Deucarian.UIBinding.CoreStateIntegration.Samples.BasicUsage"
+  ],
+  "testAssemblies": [
+    "Deucarian.UIBinding.CoreStateIntegration.Tests"
+  ],
+  "requiredDependencies": [
+    "com.deucarian.core-state",
+    "com.deucarian.ui-binding"
+  ],
+  "optionalVersionDefinedDependencies": [],
+  "allowedDirectDebugCalls": [],
+  "allowedDirectUnityObjectLifetimeCalls": [],
+  "expectedSamplesRoot": "Samples~"
+}
