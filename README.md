@@ -34,7 +34,7 @@ The package requires Unity `2021.3` or newer.
 ## Dependencies
 
 - `com.deucarian.ui-binding` `1.1.0` supplies the UI container and item contracts.
-- `com.deucarian.core-state` supplies repository and selection-service contracts.
+- `com.deucarian.core-state` `1.0.1` supplies repository and selection-service contracts.
 
 Neither UI Binding nor Core State depends on this integration package.
 

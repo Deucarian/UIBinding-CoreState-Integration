@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 - 2026-06-22
+
+- Updated the exact `com.deucarian.core-state` dependency to `1.0.1`.
+
 ## 1.0.2 - 2026-06-22
 
 - Updated the exact `com.deucarian.ui-binding` dependency to `1.1.0`.
