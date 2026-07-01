@@ -200,3 +200,16 @@ git diff --check
 ## License
 
 See [LICENSE.md](LICENSE.md).
+
+## Quick Start
+
+1. Install the package through Deucarian Package Installer or Unity Package Manager using the URL above.
+2. Let Unity finish resolving packages and compiling assemblies.
+3. Import the `Basic Usage` sample if you want a working reference scene or setup.
+4. Start from the package README sections above and the public runtime/editor APIs in this repository.
+
+## Troubleshooting
+
+- Package does not resolve: confirm the stable or development Git URL matches the Package Registry entry and that required Deucarian dependencies are installed.
+- Unity compile errors after install: let Package Manager finish resolving dependencies, then check asmdef references against `package.json` dependencies.
+- Behavior appears to belong in another package: consult `AGENTS.md` and the Package Registry governance docs before moving or duplicating code.
