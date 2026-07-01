@@ -1,35 +1,57 @@
 # Deucarian UI Binding Core State Integration
 
-## Overview
+## What this is
 
-Deucarian UI Binding Core State Integration is a small Unity UPM package that connects two standalone packages:
+`com.deucarian.ui-binding.core-state-integration` is a small Unity UPM package that connects two standalone packages:
 
 - `com.deucarian.ui-binding`
 - `com.deucarian.core-state`
 
 The package exists so UI Binding can stay focused on UI item presentation, and Core State can stay focused on repository and selection state. Neither core package references this integration package or each other.
 
-Package ID: `com.deucarian.ui-binding.core-state-integration`
+Current package version: `1.0.3`.
+
+## When to use it
+
+- Your project already uses UI Binding and Core State.
+- You want a reusable adapter from `IReadOnlyRepository<TKey, T>` to `IUIBindingContainer<T, TKey>`.
+- You want Core State selection reflected into UI Binding selection visuals.
+
+## When not to use it
+
+- Do not use this package without both target packages installed.
+- Do not put repository ownership, UI item rendering, networking, persistence, MVVM, pooling, or virtualization here.
+- Do not use this package as an app-specific UI architecture layer.
 
 Migration note: replace old manifest entries for `com.deucarian.ui-binding.core-state-bridge` with `com.deucarian.ui-binding.core-state-integration`. Current installs use the `UIBinding-CoreState-Integration.git` repository.
 
-## Installation
+## Install
 
 Install this package when a project uses both UI Binding and Core State and wants a reusable integration between repositories, selection services, and UI containers.
+
+Stable:
+
+```json
+"com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UIBinding-CoreState-Integration.git#main"
+```
+
+Development:
+
+```json
+"com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UIBinding-CoreState-Integration.git#develop"
+```
 
 For local development, reference all three packages by file path from a separate Unity project:
 
 ```json
 {
   "dependencies": {
-    "com.deucarian.ui-binding": "file:C:/Repositories/UIBinding",
+    "com.deucarian.ui-binding": "file:C:/Repositories/UI-Binding",
     "com.deucarian.core-state": "file:C:/Repositories/Core-State",
-    "com.deucarian.ui-binding.core-state-integration": "https://github.com/Deucarian/UIBinding-CoreState-Integration.git#main"
+    "com.deucarian.ui-binding.core-state-integration": "file:C:/Repositories/UIBinding-CoreState-Integration"
   }
 }
 ```
-
-The package requires Unity `2021.3` or newer.
 
 ## Dependencies
 
@@ -37,6 +59,10 @@ The package requires Unity `2021.3` or newer.
 - `com.deucarian.core-state` `1.0.1` supplies repository and selection-service contracts.
 
 Neither UI Binding nor Core State depends on this integration package.
+
+## Unity compatibility
+
+Requires Unity 2021.3 or newer.
 
 ## Repository Binding
 
@@ -127,12 +153,12 @@ The package contains one sample entry:
 
 The sample uses fake local data only and does not use API, networking, global state, or app-specific services.
 
-## Local Validation
+## Validation
 
-Run structural validation from the package root:
+Run the shared package validator from the repository root:
 
 ```powershell
-pwsh ./Tools/Validate-Package.ps1
+python C:/Repositories/Package-Registry/Tools/deucarian_package_validator.py --registry-root C:/Repositories/Package-Registry --repository-root . --config deucarian-package.json
 ```
 
 For Unity EditMode tests, create or open a separate Unity project that references the three local packages by file path, then run tests for `Deucarian.UIBinding.CoreStateIntegration.Tests`.
@@ -153,9 +179,11 @@ C:/Repositories/UIBinding-CoreState-Integration-TestProject
 
 Do not copy source code between repositories. Consume the packages through Unity Package Manager file references.
 
-## Documentation Policy
+Documentation-only updates should still pass:
 
-Public API changes require README updates, changelog entries, and focused EditMode tests.
+```powershell
+git diff --check
+```
 
 ## Limitations
 
@@ -168,3 +196,7 @@ Public API changes require README updates, changelog entries, and focused EditMo
 - [AGENTS.md](AGENTS.md) contains repository-specific ownership and Codex guidance.
 - Deucarian architecture rules live in [Package Registry](https://github.com/Deucarian/Package-Registry/blob/develop/ARCHITECTURE.md).
 - Capability ownership is tracked in [CAPABILITY_OWNERSHIP.md](https://github.com/Deucarian/Package-Registry/blob/develop/CAPABILITY_OWNERSHIP.md).
+
+## License
+
+See [LICENSE.md](LICENSE.md).
